@@ -1,0 +1,17 @@
+version: '3.4'
+
+
+services:
+  platankaapi:
+    image: ${DOCKER_REGISTRY-}platankaapi
+    build:
+      context: .
+      dockerfile: PlatankaAPI/Dockerfile
+  mongo:
+    image: mongo
+    volumes:
+      - ./db-data/mongo/:/data/db
+    ports:
+      - 27017:27017
+
+

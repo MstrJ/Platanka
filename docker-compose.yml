@@ -1,0 +1,21 @@
+﻿version: '3.4'
+
+services:
+  platankaapi:
+    env_file:
+      - .env
+    container_name: platankaapi
+    image: platankaapi:latest
+    build:
+      context: .
+      dockerfile: PlatankaAPI/Dockerfile
+    ports:
+      - 8000:80
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./db-data/mongo/:/data/db
+    ports:
+      - 27017:27017
