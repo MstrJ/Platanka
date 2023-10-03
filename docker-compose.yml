@@ -19,3 +19,18 @@ services:
       - ./db-data/mongo/:/data/db
     ports:
       - 27017:27017
+
+  platankaweb:
+    container_name: platankaweb
+    image: platankaweb:latest
+    build: ./platankaweb
+    ports:
+      - 3000:3000
+    restart: always
+    networks:
+      - platanka
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+# networks:
+#   platanka:
+#     external: true
