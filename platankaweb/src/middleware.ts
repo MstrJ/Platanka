@@ -14,7 +14,7 @@ export default withAuth(
 
     if (
       request.nextUrl.pathname.startsWith("/dashboard") &&
-      request.nextauth.token?.role !== "admin"
+      request.nextauth.token?.permission.role !== "admin"
     ) {
       return NextResponse.rewrite(new URL("/denied", request.url));
     }
@@ -26,5 +26,5 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/dashboard", "/account", "/account/profile"],
+  matcher: ["/dashboard", "/account", "/account/profile"], // :path*
 };

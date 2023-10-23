@@ -31,7 +31,10 @@ export const options: NextAuthOptions = {
           return {
             first_name: obj?.first_Name,
             last_name: obj?.last_Name,
-            role: obj?.permission.role,
+            permission: {
+              role: obj.permission.role,
+              level: obj.permission.level,
+            },
             id: obj?._Id,
             email: obj?.email,
           };
@@ -58,8 +61,11 @@ export const options: NextAuthOptions = {
             id: newObj?._Id,
             first_name: newObj?.first_Name,
             last_name: newObj?.last_Name,
-            role: newObj?.permission.role,
             email: newObj?.email,
+            permission: {
+              role: newObj.permission.role,
+              level: newObj.permission.level,
+            },
           };
         }
       },
@@ -93,7 +99,10 @@ export const options: NextAuthOptions = {
           return {
             first_name: acc?.first_Name,
             last_name: acc?.last_Name,
-            role: acc?.permission.role,
+            permission: {
+              role: acc?.permission.role,
+              level: acc?.permission.level,
+            },
             email: acc?.email,
             id: acc?._Id,
           };
@@ -111,7 +120,10 @@ export const options: NextAuthOptions = {
         user: {
           ...session.user,
           id: token.id,
-          role: token.role,
+          permission: {
+            role: token.permission.role.toLowerCase(),
+            level: token.permission.level,
+          },
           email: token.email,
           first_name: token.first_name,
           last_name: token.last_name,
@@ -124,7 +136,10 @@ export const options: NextAuthOptions = {
         return {
           ...token,
           id: u.id,
-          role: u.role,
+          permission: {
+            role: u.permission.role.toLowerCase(),
+            level: u.permission.level,
+          },
           email: u.email,
           first_name: u.first_name,
           last_name: u.last_name,

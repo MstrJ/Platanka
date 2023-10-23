@@ -8,19 +8,28 @@ declare module "next-auth" {
       id: string;
       first_name: string;
       last_name: string;
-      role: string;
+      permission: Permission;
       email: string;
     } & DefaultSession;
   }
-
-  interface User extends DefaultUser {
+  interface Permission {
     role: string;
+    level: number;
+  }
+  interface User extends DefaultUser {
+    permission: {
+      role: string;
+      level: number;
+    };
     email: string | null;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
-    role: string;
+    permission: {
+      role: string;
+      level: number;
+    };
   }
 }

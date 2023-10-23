@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useSession } from "next-auth/react";
-import { Button, Link } from "@nextui-org/react";
-import ProviderCard from "../../components/ProviderCard";
+import { Link } from "@nextui-org/react";
+import ProviderCard from "../../components/Cards/ProviderCard";
 import LoginForm from "./loginForm";
 import { useRouter, useSearchParams } from "next/navigation";
 import AccountTemplate from "@/app/components/AccountTemplate";

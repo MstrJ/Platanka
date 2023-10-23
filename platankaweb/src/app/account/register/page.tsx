@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { Button, Link } from "@nextui-org/react";
 import flowers from "/public/images/flowers2.png";
 import GoogleButton from "../../components/GoogleButton";
-import ProviderCard from "../../components/ProviderCard";
+import ProviderCard from "../../components/Cards/ProviderCard";
 import Form from "./form";
 import AccountTemplate from "@/app/components/AccountTemplate";
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "./icons";
-import SuccessCard from "./SuccessCard";
+import SuccessCard from "./Cards/SuccessCard";
 import Patch from "../utilities/Patch";
 import { ResetPasswordUser } from "../types/user";
 import ResponseActions from "./ResponseActions";

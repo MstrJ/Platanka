@@ -8,11 +8,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import caesarCipher from "../../utilities/caesarCipher";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
-import useRegister from "../../hooks/useRegister";
 import { NewUser } from "../../types/user";
 import Post from "../../utilities/Post";
-import useSWR from "swr";
-import ErrorCard from "../../components/ErrorCard";
 import ResponseActions from "../../components/ResponseActions";
 
 const Form = () => {

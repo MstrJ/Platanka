@@ -13,7 +13,7 @@ const Profile = () => {
             Id: {session.user.id}
           </div>
           <h1>Email: {session.user.email}</h1>
-          <h2>Role: {session.user.role}</h2>
+          <h2>Role: {session.user.permission.role}</h2>
           <div>
             Imie: {session.user.first_name} Nazwisko: {session.user.last_name}
           </div>

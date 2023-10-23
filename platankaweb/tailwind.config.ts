@@ -81,7 +81,7 @@ module.exports = {
               800: "#FDD5F9",
               900: "#FEECFE",
               DEFAULT: "#DD62ED",
-              foreground: "#0d001a",
+              foreground: "#ffffff",
             },
             focus: "#F182F6",
           },

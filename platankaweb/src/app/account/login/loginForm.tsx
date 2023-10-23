@@ -7,7 +7,6 @@ import * as yup from "yup";
 import CancelStepBtn from "./cancelStepBtn";
 import { LoginUser } from "../../types/user";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import SignIn from "../../utilities/SignIn";
 import ResponseActions from "../../components/ResponseActions";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";

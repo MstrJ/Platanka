@@ -21,10 +21,11 @@ export default function MyNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const currentPage = usePathname();
   const { data: session } = useSession();
+
   const menuItems = [
     "O Mnie",
     "Dostępne Produkty",
-    "Dashboard",
+    `${session?.user.permission.role == "admin" ? "Dashboard" : ""}`,
     `${session ? "Wyloguj" : "Zaloguj"}`,
   ];
 
@@ -82,11 +83,13 @@ export default function MyNavbar() {
           link="/produkty"
           name="Dostępne Produkty"
         />
-        <MyNavbarItem
-          currentPage={currentPage}
-          link="/dashboard"
-          name="Dashboard"
-        />
+        {session?.user.permission.role == "admin" && (
+          <MyNavbarItem
+            currentPage={currentPage}
+            link="/dashboard"
+            name="Dashboard"
+          />
+        )}
       </NavbarContent>
 
       <NavbarContent justify="end">

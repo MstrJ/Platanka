@@ -1,5 +1,5 @@
 "use client";
-import { Button, Link } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -26,7 +26,7 @@ const AccountBtn = ({ type }: { type?: string }) => {
           <Button
             onClick={() => signIn()}
             color="primary"
-            className="hover:bg-secondary-100"
+            className="hover:bg-primary-500/10"
             variant="flat"
           >
             Zaloguj
