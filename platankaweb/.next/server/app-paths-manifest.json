@@ -1,6 +1,0 @@
-{
-  "/produkty/page": "app/produkty/page.js",
-  "/account/register/page": "app/account/register/page.js",
-  "/account/login/page": "app/account/login/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
-}
