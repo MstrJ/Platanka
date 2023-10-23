@@ -2,9 +2,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers/provider";
-import { ThemeSwitch } from "./components/ThemeSwitcher";
 import Navbar from "./components/Navbar/page";
-import Head from "next/head";
+import AuthProvider from "./providers/auth-provider";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config as fontAwesomeConfig } from "@fortawesome/fontawesome-svg-core";
+fontAwesomeConfig.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "PlatAnka",
@@ -20,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers themeProps={{ defaultTheme: "dark" }}>
-          <Navbar />
-          <main>{children}</main>
-        </Providers>
+        <AuthProvider>
+          <Providers themeProps={{ defaultTheme: "dark" }}>
+            <Navbar />
+            <main>{children}</main>
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );

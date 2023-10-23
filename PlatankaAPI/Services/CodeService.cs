@@ -7,6 +7,7 @@ using PlatankaAPI.Repositories;
 using PlatankaAPI.Models.Enums;
 using Repositories;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using MongoDB.Bson;
 
 namespace PlatankaAPI.Services
 {
@@ -20,21 +21,6 @@ namespace PlatankaAPI.Services
             _mailService = mailService;
             var mongoDatabase = client.GetDatabase("Platanka");
             _tempAccountsCodes = mongoDatabase.GetCollection<TempAccountsCode>("TempAccountsCodes");
-
-            //var ttlIndexOptions = new CreateIndexOptions
-            //{
-            //    ExpireAfter = TimeSpan.FromSeconds(40)
-                
-            //};
-
-            //var fieldDefinition = Builders<TempAccountsCode>.IndexKeys.Ascending(x => x.CreatedAt);
-            //_tempAccountsCodes.Indexes.CreateOne(
-            //    new CreateIndexModel<TempAccountsCode>(
-            //        fieldDefinition,
-            //        ttlIndexOptions
-            //    )
-            //);
-
         }
 
 
@@ -76,7 +62,7 @@ namespace PlatankaAPI.Services
                 int code = ConfirmCodeGenerator();
                 var anyCodeExist = _tempAccountsCodes.Find(x => x.Email.Equals(email)) == null ? false : true;
                 if (anyCodeExist) await DeleteTempCode(email);
-
+                
                 var tempcode = new TempAccountsCode() { Email = email, Code = code };
                 await _tempAccountsCodes.InsertOneAsync(tempcode);
 
@@ -113,13 +99,12 @@ namespace PlatankaAPI.Services
             var tempAccountCode = _tempAccountsCodes.Find(_ => true).ToList().FirstOrDefault(x => x.Email.Equals(email));
             if (tempAccountCode == null) return CodeAuthorizationResult.UserNotFound;
 
-            
-            await DeleteTempCode(email); // deleting code since correct or bad \/ na jedno wychodzi
 
             if (!tempAccountCode.Code.Equals(code))
             {
                 return CodeAuthorizationResult.InvalidCode;
             }
+            await DeleteTempCode(email);
             return CodeAuthorizationResult.Success;
         }
 

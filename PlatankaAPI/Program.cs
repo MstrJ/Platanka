@@ -20,6 +20,7 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(x =>
 });
 
 builder.Services.AddTransient<IAccountsRepository, AccountsRepository>();
+builder.Services.AddTransient<ITempAccountsRepository, TempAccountsRepository>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IPostsService, PostsService>();
 builder.Services.AddTransient<IPostRepository, PostRepository>();

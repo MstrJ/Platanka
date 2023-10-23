@@ -11,6 +11,7 @@ using MongoDB.Driver;
 using Newtonsoft.Json.Linq;
 using PlatankaAPI.Models;
 using PlatankaAPI.Models.Enums;
+using PlatankaAPI.Repositories;
 using PlatankaAPI.Services;
 
 namespace Repositories
@@ -20,15 +21,17 @@ namespace Repositories
     {
 
         private readonly IMongoCollection<Account> _accountCollection;
+       
         private ICodeService _codeService;
+        private ITempAccountsRepository _tempAccountsRepository;
 
-        public AccountsRepository(IMongoClient client,ICodeService codeService)
+        public AccountsRepository(IMongoClient client,ICodeService codeService, ITempAccountsRepository tempAccountRepository)
         {
             _codeService = codeService;
+            _tempAccountsRepository = tempAccountRepository;
             var mongoDatabase = client.GetDatabase("Platanka");
 
             _accountCollection = mongoDatabase.GetCollection<Account>("Accounts");
-
         }
 
         public async Task<Account> GetAccount(string email)
@@ -62,23 +65,27 @@ namespace Repositories
         }
 
 
-        public async Task<(Account,CreateAccountResult)> AddAccountMethod(Account account)
+        public async Task<(Account,CreateAccountResult)> AddAccountMethod(Account account,bool addAsTemp)
         {
             try
             {
                 bool isAccountExist = await _accountCollection.Find(x => x.Email.Equals(account.Email)).FirstOrDefaultAsync()==null?false:true;
 
-                
-                // TODO improve this code, bcs code is shit
                 if (isAccountExist) return (null, CreateAccountResult.ExistingEmailinDB);
 
-      
-                var r = await _codeService.SendVerificationCodeAndEmail("Weryfikacja Adresu Email",account.Email);
-                if (!r.Item1) return (null, r.Item2);
-                
-                await _accountCollection.InsertOneAsync(account);
+                if(addAsTemp)
+                {
+                    var r = await _codeService.SendVerificationCodeAndEmail("Weryfikacja Adresu Email",account.Email);
+                    if (!r.Item1) return (null, r.Item2);
 
-                return (account,r.Item2);
+                    bool result = await _tempAccountsRepository.AddTempAccount(account);
+                    if (!result) return (null, CreateAccountResult.FailToCreate);
+
+                    return (account,r.Item2);
+
+                }
+                await _accountCollection.InsertOneAsync(account);
+                return (account, CreateAccountResult.Success);
 
             }
             catch (Exception ex)
@@ -133,12 +140,40 @@ namespace Repositories
         }
 
 
+        public async Task<bool> AddProvider(string email,string provider)
+        {
+            var obj = await GetAccountBy(Field.email, email);
+            var isExist = obj.Providers.Contains(provider.ToUpper());
+            if (isExist) return false;
+            obj.Providers.Add(provider);
+            await PutAccount(Field.email, email, obj);
+            return true;
+        }
+        public async Task<bool> DeleteProvider(string email,string provider)
+        {
+            var obj = await GetAccountBy(Field.email, email);
+            var isExist = obj.Providers.Contains(provider.ToUpper());
+            if (!isExist) return false;
+            obj.Providers.Remove(provider);
+            await PutAccount(Field.email, email, obj);
+            return true;
+        }
+
         public async Task<Account> AccountLoginByProviders(string email)
         {
             var account = await GetAccountBy(Field.email, email);
             account.UserActivity.LastLogin = DateTime.UtcNow;
             await PutAccount(Field.email, account.Email, account);
             return account;
+        }
+
+
+        public async Task<bool> DeleteAccount(string id)
+        {
+            var obj = await GetAccountBy(Field._Id, id);
+            if (obj == null) return false;
+            var res = await _accountCollection.DeleteOneAsync(x => x._Id.Equals(id));
+            return true;
         }
 
 
@@ -161,20 +196,34 @@ namespace Repositories
             await PutAccount(Field.email, account.Email, account);
             return (account, LoginResult.Success);
         }
-
+        
 
         public async Task<CodeAuthorizationResult> MailAuthorization(string email,int code)
         {
+
             var r = await  _codeService.CodeAuthorization(code, email);
 
             if (r == CodeAuthorizationResult.Success)
             {
-                var obj = await GetAccountBy(Field.email, email);
+                var obj =  await _tempAccountsRepository.GetAccount(email);
+
+                await _accountCollection.InsertOneAsync(obj);
+
                 obj.Email_Authorization = true;
                 await PutAccount(Field.email, obj.Email, obj);
+
+                await _tempAccountsRepository.DeleteTempAccount(email);
             }
+
             return r;
 
+        }
+
+        public async Task<CodeAuthorizationResult> CodeVerify(string email,int code)
+        {
+            var r = await _codeService.CodeAuthorization(code, email);
+            
+            return r;
         }
 
 

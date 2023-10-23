@@ -13,8 +13,8 @@ namespace PlatankaAPI.Models
         public string Email { get; set; }
         [BsonElement("Code")]
         public int Code { get; set; }
-        [BsonElement("Created")]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        [BsonElement("CreatedAt")]
+        public BsonDateTime CreatedAt { get; set; } = BsonDateTime.Create(DateTime.Now);
     }
 }
 

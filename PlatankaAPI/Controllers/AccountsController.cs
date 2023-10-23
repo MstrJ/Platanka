@@ -10,7 +10,6 @@ using PlatankaAPI.Models.DTO;
 using PlatankaAPI.Models.Enums;
 using PlatankaAPI.Services;
 using Services;
-using Sprache;
 using static Repositories.AccountsRepository;
 
 namespace PlatankaAPI.Controllers
@@ -45,26 +44,35 @@ namespace PlatankaAPI.Controllers
 
         // post
         [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(AccountDTO accountDTO,string confirmpassword)
+        public async Task<IActionResult> CreateUser(AccountDTO accountDTO, bool addastemp)
         {
-            if (!accountDTO.Password.Equals(confirmpassword)) return BadRequest("password is not matching with confirmpassword");
-            var obj = await _accountService.AddAccountMethod(accountDTO);
+            if (!accountDTO.Password.Equals(accountDTO.ConfirmPassword)) return BadRequest("password is not matching with confirmpassword");
+            var obj = await _accountService.AddAccountMethod(accountDTO, addastemp);
 
             switch (obj.Item2)
             {
                 case CreateAccountResult.Success:
                     return Ok(obj.Item1);
                 case CreateAccountResult.ExistingEmailinDB:
-                    return NotFound("Account with existing email found in the database");
+                    return NotFound("Konto z istniejącym adresem e-mail znalezionym w bazie danych");
                 case CreateAccountResult.IncorrectPasswordValid:
                     return BadRequest("Invalid new password (at least 5 letters, without ., , etc)");
                 case CreateAccountResult.NotExistingEmail:
                     return BadRequest("Account with non-existing email");
                 case CreateAccountResult.FailToCreate:
-                    return StatusCode(500, "Failed to create account");
+                    return StatusCode(500, "Nie udało się utworzyć konta");
                 default:
                     return StatusCode(500);
             }
+        }
+
+        //delete
+        [HttpDelete("Account/{id}")]
+        public async Task<IActionResult> DeleteAccount(string id)
+        {
+            var obj = await _accountService.DeleteAccount(id);
+            if (obj) return Ok("Account deleted");
+            return BadRequest("Wrong id");
         }
 
 
@@ -102,7 +110,7 @@ namespace PlatankaAPI.Controllers
             switch (r.Item2)
             {
                 case CreateAccountResult.Success:
-                    return Ok("Sended code");
+                    return Ok("sended code");
                 case CreateAccountResult.NotExistingEmail:
                     return BadRequest("Email does not exist");
                 case CreateAccountResult.FailToCreate:
@@ -114,7 +122,7 @@ namespace PlatankaAPI.Controllers
         }
 
 
-        //todo usprawnij przedmioty w query
+ 
         [HttpPatch("AuthorizationEmail/{email}")]
         public async Task<ActionResult> MailAuthorization(string email,int code)
         {
@@ -135,9 +143,30 @@ namespace PlatankaAPI.Controllers
                 default:
                     return BadRequest("Unknown error during authorization");
             }
-
-
         }
+
+        [HttpPatch("CodeVerify/{email}")]
+        public async Task<ActionResult> CodeVerify(string email, int code)
+        {
+            var result = await _accountService.CodeVerify(email, code);
+
+            switch (result)
+            {
+                case CodeAuthorizationResult.Success:
+                    return Ok("Correct Authorization");
+                case CodeAuthorizationResult.InvalidCode:
+                    return BadRequest("Invalid authorization code");
+                case CodeAuthorizationResult.CodeExpired:
+                    return BadRequest("Authorization code has expired");
+                case CodeAuthorizationResult.UserNotFound:
+                    return BadRequest("User not found");
+                case CodeAuthorizationResult.InternalServerError:
+                    return StatusCode(500, "Internal Server Error");
+                default:
+                    return BadRequest("Unknown error during authorization");
+            }
+        }
+
         [HttpPatch("ChangePermission")]
         public async Task<ActionResult<bool>> ChangePermission(string changerId,Field searchBy,string valueSearched,Roles roles)
         {
@@ -174,6 +203,22 @@ namespace PlatankaAPI.Controllers
                     return StatusCode(500, "Unknown error occurred");
             }
 
+        }
+
+
+        [HttpPatch("Provider")]
+        public async Task<IActionResult> AddProvider(string email,string provider)
+        {
+            var obj = await _accountService.AddProvider(email, provider);
+            if (obj) return Ok("Success");
+            return BadRequest("Existing Provider");
+        }
+        [HttpDelete("Provider")]
+        public async Task<IActionResult> DeleteProvider(string email, string provider)
+        {
+            var obj = await _accountService.DeleteProvider(email, provider);
+            if (obj) return Ok("Success");
+            return BadRequest("Unknown Provider Name");
         }
 
     }

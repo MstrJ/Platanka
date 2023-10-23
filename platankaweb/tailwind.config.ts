@@ -11,9 +11,18 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        flowers: "url('/public/images/flowers2.png')",
+      },
+    },
     fontFamily: {
       platanka: ["Lobster ", "cursive"],
+      base: ["Outfit ", "sans-serif"],
+      platanka2: ["Lobster Two", "cursive"],
+      prompt: ["Prompt", "sans-serif"],
+      pontano: ["Pontano Sans", "sans-serif"],
+      platanka3: ["Kaushan Script", "cursive"],
     },
   },
   darkMode: "class",
@@ -59,7 +68,7 @@ module.exports = {
           extend: "light",
           colors: {
             foreground: "#0D001A",
-            background: "#ffffff",
+            background: "#fff9ff",
             primary: {
               50: "#3B096C",
               100: "#520F83",

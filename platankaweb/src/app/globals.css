@@ -1,4 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lobster&family=Lobster+Two:ital@0;1&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Pontano+Sans:wght@400;500;600;700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply font-normal font-base;
+}
+
+.AccountLayoutSign {
+  @apply flex flex-row justify-center items-center bg-cover bg-no-repeat w-screen h-screen bg-center;
+}
+.providerText {
+  @apply flex-1 h-0.5 border-b w-max border-gray-500 -mx-1 my-2;
+}
+#cursor-not-allowed {
+  @apply cursor-not-allowed;
+}
+.err::before {
+  content: "*";
+  color: red;
+}
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

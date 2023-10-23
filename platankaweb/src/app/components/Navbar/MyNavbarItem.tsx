@@ -12,8 +12,8 @@ const MyNavbarItem = (props: {
       <Link href={props.link}>
         <div
           className={`${
-            props.currentPage === props.link ? "text-fuchsia-400" : ""
-          }`}
+            props.currentPage === props.link ? "text-primary-600" : ""
+          } hover:text-primary duration-250 font-medium`}
         >
           {props.name}
         </div>

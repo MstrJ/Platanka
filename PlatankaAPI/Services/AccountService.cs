@@ -18,6 +18,23 @@ namespace Services
             _accountRepository = accountsRepository;
             //_mailService = mailService;
         }
+        public async Task<bool> DeleteAccount(string id)
+        {
+            return await _accountRepository.DeleteAccount(id);
+        }
+        public async Task<bool> AddProvider(string email, string provider)
+        {
+            return await _accountRepository.AddProvider(email, provider);
+        }
+        public async Task<bool> DeleteProvider(string email, string provider)
+        {
+            return await _accountRepository.DeleteProvider(email, provider);
+        }
+
+        public async Task<CodeAuthorizationResult> CodeVerify(string email, int code)
+        {
+            return await _accountRepository.CodeVerify(email,code);
+        }
 
         public async Task<Account> GetAccount(string email)
         {
@@ -29,7 +46,7 @@ namespace Services
             return await _accountRepository.AccountLoginByProviders(email);
         }
 
-        public async Task<(Account,CreateAccountResult)> AddAccountMethod(AccountDTO accountDTO)
+        public async Task<(Account,CreateAccountResult)> AddAccountMethod(AccountDTO accountDTO, bool addAsTemp)
         {
             byte[] salt = GenerateSalt();
             var passwordTest = PasswordChecker(accountDTO.Password);
@@ -41,14 +58,14 @@ namespace Services
                 First_Name = accountDTO.First_Name,
                 Last_Name = accountDTO.Last_Name,
                 Password = hashedPassword,
-                Email_Authorization = false,
+                Email_Authorization = addAsTemp ? false:true,
                 Salt = salt,
                 Permission = new Permission { Level = 0, Role = "User" },
                 UserActivity = new UserActivity { AccountCreated = DateTime.UtcNow, LastLogin = null },
-                FromProvider = accountDTO.FromProvider,
+                Providers = accountDTO.Providers,
                 _Id = null
             };
-            return await _accountRepository.AddAccountMethod(obj);
+            return await _accountRepository.AddAccountMethod(obj, addAsTemp);
         }
         public async Task<IEnumerable<Account>> GetAccounts(Roles? type)
         {

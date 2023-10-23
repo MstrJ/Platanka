@@ -25,8 +25,8 @@ namespace Models
         public UserActivity UserActivity { get; set; }
         [BsonElement("Permission")]
         public Permission Permission { get; set; }
-        [BsonElement("FromProvider")]
-        public string FromProvider { get; set; } = "";
+        [BsonElement("Providers")]
+        public List<string> Providers { get; set; }
     }
 
     public class Permission

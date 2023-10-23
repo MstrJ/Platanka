@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
+import GoogleButton from "./components/GoogleButton";
 export default function Page() {
   return (
     <>
