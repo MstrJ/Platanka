@@ -1,13 +1,8 @@
-import nextAuth from "next-auth";
 import { withAuth, NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(request: NextRequestWithAuth) {
-    // console.log(request.nextUrl.pathname);
-    // console.log(request.nextauth.token);
-    // console.log("request Role:", request.nextauth.token?.role);
-
     // if (request.nextUrl.pathname.startsWith("/account")) {
     //   return NextResponse.redirect("/login");
     // }
@@ -26,5 +21,5 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/dashboard", "/account", "/account/profile"], // :path*
+  matcher: ["/dashboard", "/account"], // :path*
 };

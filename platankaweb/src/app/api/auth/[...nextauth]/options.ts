@@ -22,12 +22,9 @@ export const options: NextAuthOptions = {
         const obj: User | null = await Get<User>({
           urlEnd: `Accounts/${profile.email}`,
         });
-
         if (obj != null) {
           await Patch(`Accounts/LoginByProviders/${obj.email}`);
-
           await Patch(`Accounts/Provider?email=${obj.email}&provider=Google`);
-
           return {
             first_name: obj?.first_Name,
             last_name: obj?.last_Name,
@@ -41,7 +38,6 @@ export const options: NextAuthOptions = {
         } else {
           const rpassword = RandomString({ length: 16 });
           const username = profile.name.split(" ");
-
           const tempdata: NewUser = {
             email: profile.email,
             first_Name: username[0],
@@ -148,6 +144,9 @@ export const options: NextAuthOptions = {
       return token;
     },
     async signIn({ user, account, profile }): Promise<any> {
+      // if (account?.provider === "google") {
+      //   return user;
+      // }
       return true;
     },
   },

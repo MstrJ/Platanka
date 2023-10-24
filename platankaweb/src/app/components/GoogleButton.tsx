@@ -10,9 +10,9 @@ const GoogleButton = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const handleClick = async () => {
-    const r = await signIn("google", { callbackUrl: callbackUrl, router });
+    const r = await signIn("google", { callbackUrl: callbackUrl });
   };
-  // todo error setup
+  // TODO: error setup
   return (
     <Button
       onClick={handleClick}

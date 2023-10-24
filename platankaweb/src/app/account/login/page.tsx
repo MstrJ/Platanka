@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { Link } from "@nextui-org/react";
 import ProviderCard from "../../components/Cards/ProviderCard";
 import LoginForm from "./loginForm";
-import { useRouter, useSearchParams } from "next/navigation";
+import { notFound, useRouter, useSearchParams } from "next/navigation";
 import AccountTemplate from "@/app/components/AccountTemplate";
 
 const LoginPage = () => {
