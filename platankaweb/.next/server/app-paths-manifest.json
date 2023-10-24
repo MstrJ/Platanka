@@ -1,7 +1,0 @@
-{
-  "/omnie/page": "app/omnie/page.js",
-  "/produkty/page": "app/produkty/page.js",
-  "/account/page": "app/account/page.js",
-  "/account/login/page": "app/account/login/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
-}
