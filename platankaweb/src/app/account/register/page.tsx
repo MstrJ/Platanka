@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import { useSession } from "next-auth/react";
 import { Button, Link } from "@nextui-org/react";
-import flowers from "/public/images/flowers2.png";
-import GoogleButton from "../../components/GoogleButton";
 import ProviderCard from "../../components/Cards/ProviderCard";
 import Form from "./form";
 import AccountTemplate from "@/app/components/AccountTemplate";
+import PlatankaLink from "@/app/components/PlatankaLink";
 
 const RegisterPage = () => {
   return (
@@ -15,9 +13,8 @@ const RegisterPage = () => {
       <div className="flex-1 md:basis-1/4 basis-1/6  "></div>
       <div className=" flex-1 md:basis-3/4 basis-5/6 h-screen bg-background/95  overflow-y-auto">
         <div className="pl-14 md:w-96">
-          <h1 className="text-primary-400 font-platanka text-[28px] mt-8">
-            PlątAnka
-          </h1>
+          <PlatankaLink />
+
           <h1 className="text-primary-500  font-platanka  text-[34px]  bold mt-8">
             Stwórz Konto
           </h1>

@@ -6,6 +6,12 @@ export default withAuth(
     // if (request.nextUrl.pathname.startsWith("/account")) {
     //   return NextResponse.redirect("/login");
     // }
+    if (
+      request.nextUrl.pathname.startsWith("/dashboard") &&
+      !request.nextauth.token
+    ) {
+      return NextResponse.rewrite(new URL("/denied", request.url)); // fix, works only if user login
+    }
 
     if (
       request.nextUrl.pathname.startsWith("/dashboard") &&
@@ -21,5 +27,11 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/dashboard", "/account:path*", "/account"],
+  matcher: [
+    "/dashboard",
+    "/dashboard/:path*",
+    "/dashboard:path*",
+    "/account:path*",
+    "/account",
+  ],
 };

@@ -31,7 +31,11 @@ const Form = () => {
 
   const onSubmit = async (data: any) => {
     setError("");
-    const obj: User | null = await Get({ urlEnd: `Accounts/${data.email}` });
+
+    const obj: User | null = await Get({
+      urlEnd: `Accounts/${data.email}`,
+      setLoading: setLoading,
+    });
     if (!obj) {
       setError("Brak użytkownika dla podanych danych.");
       return;
@@ -57,11 +61,11 @@ const Form = () => {
 
   useEffect(() => {
     const email: string | null = params.get("email");
-    console.log(email);
     if (email) {
       setValue("email", email);
     }
   }, []);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
