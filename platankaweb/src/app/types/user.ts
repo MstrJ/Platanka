@@ -3,10 +3,11 @@ export interface User {
   email: string;
   first_Name: string;
   last_Name: string;
+  salt: string;
   email_Authorization: boolean;
   userActivity: UserActivity;
   permission: Permission;
-  fromProvider: string;
+  providers: string[];
 }
 
 export type ResetPasswordUser = {

@@ -16,7 +16,7 @@ const ImageComponent = ({
       width={700}
       style={{ filter: `${isActive ? "" : "grayscale(100%)"}` }}
       isBlurred={isActive}
-      className="rounded-none rounded-t-lg"
+      className="rounded-none rounded-t-lg  w-fit"
       as={NextImage}
       src={`${process.env.NEXT_PUBLIC_DEFAULTAPI_URL}/api/Images/${id}`}
     />

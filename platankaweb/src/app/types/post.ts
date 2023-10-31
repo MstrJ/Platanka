@@ -8,4 +8,9 @@ type PostType = {
   imagesIds: string[];
   uploadDate: string;
 };
+
+export type Category = {
+  _Id: string;
+  name: string;
+};
 export default PostType;

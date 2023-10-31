@@ -1,4 +1,6 @@
 import ResponseActions from "@/app/components/ResponseActions";
+import { User } from "@/app/types/user";
+import Get from "@/app/utilities/Get";
 import SendCode from "@/app/utilities/SendCode";
 import caesarCipher from "@/app/utilities/caesarCipher";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,7 +29,19 @@ const Form = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
+    setError("");
+    const obj: User | null = await Get({ urlEnd: `Accounts/${data.email}` });
+    if (!obj) {
+      setError("Brak użytkownika dla podanych danych.");
+      return;
+    }
+    if (!obj.salt) {
+      setError(
+        "Niemożliwa zmiana hasła dla użytkownika, który pierwotnie utworzył konto przez providerem."
+      );
+      return;
+    }
     SendCode(setLoading, setError, data.email);
     params.set("email", data.email);
     params.set("callbackUrl", params.get("callbackUrl")!);
@@ -43,7 +57,7 @@ const Form = () => {
 
   useEffect(() => {
     const email: string | null = params.get("email");
-
+    console.log(email);
     if (email) {
       setValue("email", email);
     }
