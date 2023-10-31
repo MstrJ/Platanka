@@ -35,9 +35,9 @@ namespace PlatankaAPI.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts([FromQuery] bool? active, [FromQuery] List<string>? category)
         {
-            var r = await _postService.GetPosts();
+            var r = await _postService.GetPosts(active,category);
             return Ok(r);
         }
 
