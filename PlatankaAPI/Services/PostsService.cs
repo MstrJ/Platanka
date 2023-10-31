@@ -48,9 +48,9 @@ namespace PlatankaAPI.Services
             return await _postRepository.GetPostById(id);
         }
 
-        public async Task<IEnumerable<Post>> GetPosts()
+        public async Task<IEnumerable<Post>> GetPosts(bool? active, List<string>? category)
         {
-            return await _postRepository.GetPosts();
+            return await _postRepository.GetPosts(active,category);
         }
     }
 }

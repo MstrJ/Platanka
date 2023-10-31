@@ -11,9 +11,9 @@ namespace PlatankaAPI.Models.DTO
 
         public string Last_Name { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
 
         public List<string> Providers { get; set; }
 

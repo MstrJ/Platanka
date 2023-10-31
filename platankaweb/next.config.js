@@ -3,6 +3,7 @@ const nextConfig = {
   output: "standalone",
   images: {
     domains: ["localhost"], // Add the hostname(s) you want to allow
+
     // remotePatterns: [
     //   {
     //     protocol: 'https',

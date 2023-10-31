@@ -46,7 +46,10 @@ namespace PlatankaAPI.Controllers
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser(AccountDTO accountDTO, bool addastemp)
         {
-            if (!accountDTO.Password.Equals(accountDTO.ConfirmPassword)) return BadRequest("password is not matching with confirmpassword");
+            if(addastemp)
+            {
+                if (!accountDTO.Password.Equals(accountDTO.ConfirmPassword)) return BadRequest("password is not matching with confirmpassword");
+            }
             var obj = await _accountService.AddAccountMethod(accountDTO, addastemp);
 
             switch (obj.Item2)
@@ -55,8 +58,6 @@ namespace PlatankaAPI.Controllers
                     return Ok(obj.Item1);
                 case CreateAccountResult.ExistingEmailinDB:
                     return NotFound("Konto z istniejącym adresem e-mail znalezionym w bazie danych");
-                case CreateAccountResult.IncorrectPasswordValid:
-                    return BadRequest("Invalid new password (at least 5 letters, without ., , etc)");
                 case CreateAccountResult.NotExistingEmail:
                     return BadRequest("Account with non-existing email");
                 case CreateAccountResult.FailToCreate:
@@ -193,8 +194,6 @@ namespace PlatankaAPI.Controllers
             {
                 case ChangePasswordResult.Success:
                     return Ok("Password changed");
-                case ChangePasswordResult.InvalidNewPassword:
-                    return BadRequest("Invalid new password");
                 case ChangePasswordResult.PasswordsNotMatching:
                     return BadRequest("Passwords do not match");
                 case ChangePasswordResult.Error:
