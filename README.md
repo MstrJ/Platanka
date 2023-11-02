@@ -1,9 +1,9 @@
-![Platanka = Next.js + .NET CORE API](https://cdn.discordapp.com/attachments/429588515022569472/1169010197688234014/platankaBannerGITHUB.png?ex=6553d896&is=65416396&hm=fc6d32108c43d649a31d74021487603d6308c7864b2fd79b4387e56739778e02&)
+![Platanka = Next.js + .NET CORE API](PlatankaFootages/platankaBannerGITHUB.png)
 
-<h3>
-<p>Strona internetowa PlatAnka, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu 
-techniki szydełkowania.</p>
-</h3>
+<br>
+
+Strona internetowa **PlatAnka**, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu
+techniki szydełkowania.
 
 ## Projekt podzielony jest na trzy główne części:
 
@@ -22,14 +22,14 @@ techniki szydełkowania.</p>
 ### Używane Biblioteki:
 
 Najważniejszą biblioteką wykorzystywaną jest [React](https://react.dev/), jest mózgiem strony internetowej.
-Jednym z ważnieszych aspektów strony internetowej jest część wizualna, która jest wspierana przez technologie [Tailwind](https://tailwindcss.com/) oraz [NextUI](https://nextui.org/). Oprócz części wizualnej serwisu, równie ważnym fragmentem też jest autoryzacja użytkownika od strony sesji na stronie czy ciasteczek cookie, która jest wspierana przez [NextAuth](https://next-auth.js.org/), jaka m.in. umożliwia logowanie / rejestrowanie się przez Google.
+Jednym z ważnieszych aspektów strony internetowej jest część wizualna, która jest wspierana przez technologie [Tailwind](https://tailwindcss.com/) oraz [NextUI](https://nextui.org/). Oprócz części wizualnej serwisu, równie ważnym fragmentem też jest autoryzacja użytkownika od strony sesji na stronie czy ciasteczek cookie, która jest wspierana przez [NextAuth](https://next-auth.js.org/), jaka m.in. umożliwia logowanie / rejestrowanie się przez Google. Przy tworzeniu formularzy używam hook'a *useForm* z *react-hook-form* a za schematem walidacji pól stoi [YUP](https://github.com/jquense/yup).
 
 <br>
 
 ## Back-End (API)
 
 **Back-End** obejmuje Restful API, odpowiedzialne za logikę strony internetowej. Zostało stworzone w środowisku [Visual Studio](https://visualstudio.microsoft.com/pl/), przy użyciu języka
-[C#](https://learn.microsoft.com/pl-pl/dotnet/csharp/) oraz z użyciem framework'a [.NET CORE](https://learn.microsoft.com/pl-pl/aspnet/core/introduction-to-aspnet-core).
+[C#](https://learn.microsoft.com/pl-pl/dotnet/csharp/) oraz z użyciem framework'a [ASP .NET CORE](https://learn.microsoft.com/pl-pl/aspnet/core/introduction-to-aspnet-core).
 Najważniejszą częścią strony internetowej od strony logicznej jest właśnie Back-End. Odpowiada za wszyskie działania związane z zarządzaniem danymi.
 
 ### Używana Biblioteka
@@ -46,7 +46,50 @@ Serwis PlatAnka wykorzystuje baze danych NoSQL [MongoDB](https://www.mongodb.com
 
 **Dev-Ops** wykorzystuje serwis PlatAnka w zakresie programu [Docker](https://www.docker.com/), który umożliwia przechowywanie i uruchamianie wszystkich instancji aplikacji WEB, API oraz bazy danych za pomocą narzędzia docker-compose. To zapewnia efektywną izolację środowiska i umożliwia łatwe skalowanie aplikacji.
 
-## Działanie serwisu PlatAnka
+## Serwis PlatAnka
+
+Strona posiada możliwość, która pozwala na zmianę motywu na ciemny lub jasny.
+
+![gif_dark_light](PlatankaFootages/GIF_DARK_LIGHT_MODE.gif)
+
+### Strona Produktów
+
+Istnieje możliwość sortowania produktów na podstawie ich kategorii i dostępności.
+
+![produkty1](PlatankaFootages/produkty2.png)
+![produkty1](PlatankaFootages/produkty3.png)
+
+### Strona Logowania
+
+Logowanie na serwis jest możliwe za pomocą hasła i emaila lub poprzez dostawce Google.
+
+![login1](PlatankaFootages/log.png)
+
+Jeśli zapomniałeś hasło możesz kliknąć w **'Zapomniałeś Hasło?'**.
+Które przenosi na strone *Reset*, gdzie po kliknięciu przycisk **'Wyślij'**. Wyśle na podany adres email kod 4 cyfrowy, który musisz podać na stronie *Potwierdź*, by potwierdzić email.
+
+### Strona Reset
+![reset](PlatankaFootages/reset.png)
+
+### Strona Potwierdź
+![confirm](PlatankaFootages/confirm.png)
+
+### Strona Rejestracji
+
+Rejestracja jest możliwa za pomocą emaila i hasła lub przez dostawce Google.
+
+![reg1](PlatankaFootages/reg1.png)
+
+Oczywiście we wszystkich polach jest używana walidacja.
+
+![reg1](PlatankaFootages/reg2.png)
+
+Po wpisaniu prawidłowych danych, bedziesz musiał potwierdzić adres email, na który został wysłany kod 4 cyfrowy.
+
+![confirm](PlatankaFootages/confirm.png)
+
+<br>
+<br>
 
 ## ! Projekt jest nadal rozwijany !
 
