@@ -1,9 +1,10 @@
-![Platanka = Next.js + .NET CORE API](https://cdn.discordapp.com/attachments/429588515022569472/1169010197688234014/platankaBannerGITHUB.png?ex=6553d896&is=65416396&hm=fc6d32108c43d649a31d74021487603d6308c7864b2fd79b4387e56739778e02&)
+![Platanka = Next.js + .NET CORE API](PlatankaFootages/platankaBannerGITHUB.png)
 
-<h3>
-<p>Strona internetowa PlatAnka, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu 
-techniki szydełkowania.</p>
-</h3>
+<br>
+
+Strona internetowa **PlatAnka**, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu 
+techniki szydełkowania.
+
 
 ## Projekt podzielony jest na trzy główne części:
 
@@ -29,7 +30,7 @@ Jednym z ważnieszych aspektów strony internetowej jest część wizualna, któ
 ## Back-End (API)
 
 **Back-End** obejmuje Restful API, odpowiedzialne za logikę strony internetowej. Zostało stworzone w środowisku [Visual Studio](https://visualstudio.microsoft.com/pl/), przy użyciu języka
-[C#](https://learn.microsoft.com/pl-pl/dotnet/csharp/) oraz z użyciem framework'a [.NET CORE](https://learn.microsoft.com/pl-pl/aspnet/core/introduction-to-aspnet-core).
+[C#](https://learn.microsoft.com/pl-pl/dotnet/csharp/) oraz z użyciem framework'a [ASP .NET CORE](https://learn.microsoft.com/pl-pl/aspnet/core/introduction-to-aspnet-core).
 Najważniejszą częścią strony internetowej od strony logicznej jest właśnie Back-End. Odpowiada za wszyskie działania związane z zarządzaniem danymi.
 
 ### Używana Biblioteka
@@ -47,6 +48,7 @@ Serwis PlatAnka wykorzystuje baze danych NoSQL [MongoDB](https://www.mongodb.com
 **Dev-Ops** wykorzystuje serwis PlatAnka w zakresie programu [Docker](https://www.docker.com/), który umożliwia przechowywanie i uruchamianie wszystkich instancji aplikacji WEB, API oraz bazy danych za pomocą narzędzia docker-compose. To zapewnia efektywną izolację środowiska i umożliwia łatwe skalowanie aplikacji.
 
 ## Działanie serwisu PlatAnka
+
 
 ## ! Projekt jest nadal rozwijany !
 
