@@ -84,7 +84,7 @@ Oczywiście we wszystkich polach jest używana walidacja.
 
 ![reg1](PlatankaFootages/reg2.png)
 
-Po wpisaniu prawidłowych danych, bedziesz musiał potwierdzić adres email, na który został wysłany kod 4 cyfrowy.
+Po wpisaniu prawidłowych danych, trzeba potwierdzić adres email, na który został wysłany kod 4 cyfrowy.
 
 ![confirm](PlatankaFootages/confirm.png)
 
