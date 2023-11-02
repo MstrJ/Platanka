@@ -50,9 +50,9 @@ Serwis PlatAnka wykorzystuje baze danych NoSQL [MongoDB](https://www.mongodb.com
 
 Strona posiada możliwość, która pozwala na zmianę motywu na ciemny lub jasny.
 
+
 ![gif_dark_light](PlatankaFootages/GIF_DARK_LIGHT_MODE.gif)
 
-### Strona Produktów
 
 Istnieje możliwość sortowania produktów na podstawie ich kategorii i dostępności.
 
