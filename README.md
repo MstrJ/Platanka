@@ -2,9 +2,8 @@
 
 <br>
 
-Strona internetowa **PlatAnka**, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu 
+Strona internetowa **PlatAnka**, jest serwisem dającą możliwość prezentacji i sprzedaży przedmiotów. Platforma daje możliwość użytkownikom zainteresowania się opcją zamówienia m.in. dekoracji wnętrz, zabawek dla dzieci czy przedmiotów stworzonych przy użyciu
 techniki szydełkowania.
-
 
 ## Projekt podzielony jest na trzy główne części:
 
@@ -47,8 +46,24 @@ Serwis PlatAnka wykorzystuje baze danych NoSQL [MongoDB](https://www.mongodb.com
 
 **Dev-Ops** wykorzystuje serwis PlatAnka w zakresie programu [Docker](https://www.docker.com/), który umożliwia przechowywanie i uruchamianie wszystkich instancji aplikacji WEB, API oraz bazy danych za pomocą narzędzia docker-compose. To zapewnia efektywną izolację środowiska i umożliwia łatwe skalowanie aplikacji.
 
-## Działanie serwisu PlatAnka
+## Serwis PlatAnka
 
+Strona posiada możliwość, która pozwala na zmianę motywu na ciemny lub jasny. 
+
+![gif_dark_light](PlatankaFootages/GIF_DARK_LIGHT_MODE.gif)
+
+### Strona Produktów
+Istnieje możliwość sortowania produktów na podstawie ich kategorii i dostępności.
+
+![produkty1](PlatankaFootages/produkty2.png)
+![produkty1](PlatankaFootages/produkty3.png)
+
+### Strona Logowania
+Logowanie na serwis jest możliwe za pomocą hasła i emaila lub poprzez dostawce Google
+
+![login1](PlatankaFootages/log.png)
+
+Jeśli zapomniałeś hasło możesz kliknąć w **'Zapomniałeś hasła?'**
 
 ## ! Projekt jest nadal rozwijany !
 
