@@ -145,7 +145,7 @@ namespace Repositories
             var obj = await GetAccountBy(Field.email, email);
             var isExist = obj.Providers.Contains(provider.ToUpper());
             if (isExist) return false;
-            obj.Providers.Add(provider);
+            obj.Providers.Add(provider.ToUpper());
             await PutAccount(Field.email, email, obj);
             return true;
         }
@@ -154,7 +154,7 @@ namespace Repositories
             var obj = await GetAccountBy(Field.email, email);
             var isExist = obj.Providers.Contains(provider.ToUpper());
             if (!isExist) return false;
-            obj.Providers.Remove(provider);
+            obj.Providers.Remove(provider.ToUpper());
             await PutAccount(Field.email, email, obj);
             return true;
         }
@@ -179,8 +179,11 @@ namespace Repositories
 
         public async Task<(Account account, LoginResult result)> AccountLogin(string email, string password)
         {
-            var account = await GetAccountBy(Field.email, email);
 
+            if (password == null) return (null, LoginResult.InvalidPassword); // ADDED
+
+            var account = await GetAccountBy(Field.email, email);
+            
             if (account == null)
             {
                 return (null, LoginResult.AccountNotFound);

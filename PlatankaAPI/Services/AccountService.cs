@@ -48,21 +48,24 @@ namespace Services
 
         public async Task<(Account,CreateAccountResult)> AddAccountMethod(AccountDTO accountDTO, bool addAsTemp)
         {
+ 
+            if (addAsTemp)
+            {
+                if(string.IsNullOrEmpty(accountDTO.Password) || string.IsNullOrEmpty(accountDTO.ConfirmPassword)) return (null, CreateAccountResult.FailToCreate);
+            }
             byte[] salt = GenerateSalt();
-            var passwordTest = PasswordChecker(accountDTO.Password);
-            if(!passwordTest) return (null, CreateAccountResult.IncorrectPasswordValid); // dziala? TODO
             string hashedPassword = _accountRepository.HashPassword(accountDTO.Password, salt);
             var obj = new Account
             {
                 Email = accountDTO.Email,
                 First_Name = accountDTO.First_Name,
                 Last_Name = accountDTO.Last_Name,
-                Password = hashedPassword,
+                Password = !addAsTemp ? null : hashedPassword,
+                Salt = !addAsTemp ? null: salt,
                 Email_Authorization = addAsTemp ? false:true,
-                Salt = salt,
                 Permission = new Permission { Level = 0, Role = "User" },
                 UserActivity = new UserActivity { AccountCreated = DateTime.UtcNow, LastLogin = null },
-                Providers = accountDTO.Providers,
+                Providers = accountDTO.Providers.ToList().Select(x=>x.ToUpper()).ToList(),
                 _Id = null
             };
             return await _accountRepository.AddAccountMethod(obj, addAsTemp);
@@ -99,8 +102,6 @@ namespace Services
         {
             if (!changePasswordDTO.ConfirmPassword.Equals(changePasswordDTO.NewPassword)) return ChangePasswordResult.PasswordsNotMatching;
 
-            if (!PasswordChecker(changePasswordDTO.NewPassword)) return ChangePasswordResult.InvalidNewPassword;
-
             var result = await _accountRepository.ChangePassword(changePasswordDTO.email, changePasswordDTO.NewPassword);
             if (!result) return ChangePasswordResult.Error;
 
@@ -109,19 +110,8 @@ namespace Services
             //if (result) await _mailService.SendMail("Zmiana Hasła", $"{changePasswordDTO.email} zostało zmienione hasło",changePasswordDTO.email);
             return ChangePasswordResult.Success;
         }
+        
 
-        public bool PasswordChecker(string password)
-        {
-            // fix passwordChecker
-            string[] znaki = new string[] { "/", "\\", "'", "\"", "[", "]", "{", "}", "(", ")" };
-            if (string.IsNullOrWhiteSpace(password)) return false;
-            if (password.Length < 5) return false;
-            for (int i = 0; i < znaki.Length; i++)
-            {
-                if (password.Contains(znaki[i])) return false;
-            }
-            return true;
-        }
     }
 }
 

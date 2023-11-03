@@ -2,15 +2,15 @@
 import AccountTemplate from "@/app/components/AccountTemplate";
 import React, { useEffect, useState } from "react";
 import Form from "./form";
+import PlatankaLink from "@/app/components/PlatankaLink";
 
 const Reset = () => {
   return (
     <AccountTemplate>
       <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background/95">
         <div className="pl-8 pr-8">
-          <h1 className="text-primary-400 font-platanka text-[28px] mt-8">
-            PlątAnka
-          </h1>
+          <PlatankaLink />
+
           <h1 className="text-primary-500  font-platanka  text-[34px]  bold mt-8">
             Zresetuj swoje hasło
           </h1>

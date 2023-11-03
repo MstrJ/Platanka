@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -16,6 +15,7 @@ import { ThemeSwitch } from "../ThemeSwitcher";
 import MyNavbarItem from "./MyNavbarItem";
 import AccountBtn from "./accountBtn";
 import { useSession } from "next-auth/react";
+import { FaBeer, FaFacebook, FaFacebookSquare } from "react-icons/fa";
 
 export default function MyNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -93,7 +93,13 @@ export default function MyNavbar() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="sm:flex flex-row gap-2">
+        <NavbarItem className="sm:flex flex-row gap-4">
+          <Link
+            className="text-2xl mr-0.5 hover:cursor-pointer"
+            href="https://www.facebook.com/platanka"
+          >
+            <FaFacebookSquare />
+          </Link>
           <ThemeSwitch />
           <div className="hidden sm:flex">
             <AccountBtn />

@@ -7,6 +7,7 @@ import ProviderCard from "../../components/Cards/ProviderCard";
 import LoginForm from "./loginForm";
 import { notFound, useRouter, useSearchParams } from "next/navigation";
 import AccountTemplate from "@/app/components/AccountTemplate";
+import PlatankaLink from "@/app/components/PlatankaLink";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -18,9 +19,8 @@ const LoginPage = () => {
     <AccountTemplate>
       <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background/95">
         <div className="pl-8">
-          <h1 className="text-primary-400 font-platanka text-[28px] mt-8">
-            PlątAnka
-          </h1>
+          <PlatankaLink />
+
           <h1 className="text-primary-500  font-platanka  text-[34px]  bold mt-8">
             Zaloguj się na swoje konto
           </h1>
