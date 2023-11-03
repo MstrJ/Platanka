@@ -23,7 +23,6 @@ export const PostCard = ({
           <Image
             as={NextImage}
             shadow="sm"
-            isBlurred={post.active}
             radius="lg"
             width={600}
             height={600}
