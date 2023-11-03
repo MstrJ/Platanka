@@ -1,11 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { SwitchProps, useSwitch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
-import clsx from "clsx";
-
+import { BsSunFill } from "react-icons/bs";
 import { Switch } from "@nextui-org/react";
 import { SunFilledIcon, MoonFilledIcon } from "@/app/components/icons";
 
@@ -19,32 +18,31 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   classNames,
 }) => {
   const { theme, setTheme } = useTheme();
-  const isSSR = useIsSSR();
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted)
+    return (
+      <>
+        <div className="w-7 h-7 rounded-md  flex items-center justify-center  hover:bg-default-100 duration-100">
+          <MoonFilledIcon />
+        </div>
+      </>
+    );
+  const currentTheme = theme == "light" ? "dark" : "light";
   const onChange = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    setTheme(theme === "light" ? "dark" : "light");
   };
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps,
-  } = useSwitch({
-    onChange,
-    isSelected: theme === "light" ? false : true,
-  });
 
   return (
-    <Switch
-      onValueChange={onChange}
-      defaultSelected={theme === "light" ? false : true}
-      isSelected={theme === "light" ? false : true}
-      size="sm"
-      color="primary"
-      startContent={<SunFilledIcon className={className} size={22} />}
-      endContent={<MoonFilledIcon className={className} size={22} />}
-    ></Switch>
+    <div
+      className="w-7 h-7 rounded-md  flex items-center justify-center  duration-100 hover:cursor-pointer"
+      onClick={onChange}
+    >
+      {currentTheme === "light" ? <BsSunFill /> : <MoonFilledIcon />}
+    </div>
   );
 };

@@ -30,11 +30,15 @@ namespace PlatankaAPI.Repositories
             return obj;
         }
 
-        public async Task<IEnumerable<Post>> GetPosts()
+        public async Task<IEnumerable<Post>> GetPosts(bool? active,List<string>? category)
         {
-            var obj = await _postsCollection.Find(_ => true).ToListAsync();
+            var lista = await _postsCollection.Find(_ => true).ToListAsync();
 
-            return obj;
+            if (active.HasValue) lista = lista.Where(x => x.Active == active.Value).ToList();
+
+            if (category != null && category.Any()) lista = lista.Where(x => category.Contains(x.Category.ToLower())).ToList();
+
+            return lista;
         }
 
         // zamiast bool, add enums

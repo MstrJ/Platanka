@@ -18,6 +18,8 @@ const Post = async <T>(props: {
         body: props.data !== undefined ? JSON.stringify(props.data) : undefined,
       }
     );
+
+    if (res.status == 405) return { error: true, data: "Niedozwolona metoda" };
     if (!res.ok) {
       return { error: true, data: await res.text() };
     }

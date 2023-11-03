@@ -6,7 +6,9 @@ import React from "react";
 
 const Account = () => {
   const { status, data: session } = useSession();
+
   if (status !== "loading" && !session) return notFound();
+
   return (
     <div className="flex flex-col">
       <div className="bg-foreground text-background ">

@@ -11,7 +11,7 @@ import RandomString from "@/app/utilities/RandomString";
 export const options: NextAuthOptions = {
   pages: {
     signIn: "/account/login",
-    // error: "/auth/error",
+    error: "/auth/error",
   },
   providers: [
     GoogleProvider({
@@ -22,9 +22,10 @@ export const options: NextAuthOptions = {
         const obj: User | null = await Get<User>({
           urlEnd: `Accounts/${profile.email}`,
         });
+
         if (obj != null) {
           await Patch(`Accounts/LoginByProviders/${obj.email}`);
-          await Patch(`Accounts/Provider?email=${obj.email}&provider=Google`);
+          await Patch(`Accounts/Provider?email=${obj.email}&provider=GOOGLE`);
           return {
             first_name: obj?.first_Name,
             last_name: obj?.last_Name,
@@ -36,22 +37,25 @@ export const options: NextAuthOptions = {
             email: obj?.email,
           };
         } else {
-          const rpassword = RandomString({ length: 16 });
           const username = profile.name.split(" ");
           const tempdata: NewUser = {
             email: profile.email,
             first_Name: username[0],
             last_Name: username[1] ?? " ",
-            password: rpassword.toString(),
-            confirmPassword: rpassword.toString(),
+            password: "12356",
+            confirmPassword: "12356",
             providers: ["GOOGLE"],
           };
-          const link = `Accounts/CreateUser&addastemp=false`;
+
+          const link = "Accounts/CreateUser?addastemp=false";
           const res = await Post<NewUser>({
             link: link,
             data: tempdata,
+            returnData: true,
           });
+
           const newObj: User = res?.data;
+
           if (!newObj) return null;
           return {
             id: newObj?._Id,
@@ -59,8 +63,8 @@ export const options: NextAuthOptions = {
             last_name: newObj?.last_Name,
             email: newObj?.email,
             permission: {
-              role: newObj.permission.role,
-              level: newObj.permission.level,
+              role: newObj?.permission.role,
+              level: newObj?.permission.level,
             },
           };
         }
