@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -113,7 +113,9 @@ export default function MyNavbar() {
               <Link className="w-full" href={menuItemsHref[index]}>
                 <div
                   className={`${
-                    currentPage == menuItemsHref[index] ? "text-primary" : ""
+                    currentPage.startsWith(menuItemsHref[index])
+                      ? "text-primary"
+                      : ""
                   }`}
                 >
                   {item}

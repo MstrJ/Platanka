@@ -8,11 +8,14 @@ const MyNavbarItem = (props: {
   name: string;
 }) => {
   return (
-    <NavbarItem className="lg:flex" isActive={props.currentPage === props.link}>
+    <NavbarItem
+      className="lg:flex"
+      isActive={props.currentPage.startsWith(props.link)}
+    >
       <Link href={props.link}>
         <div
           className={`${
-            props.currentPage === props.link ? "text-primary-600" : ""
+            props.currentPage.startsWith(props.link) ? "text-primary-600" : ""
           } hover:text-primary duration-250 font-medium`}
         >
           {props.name}

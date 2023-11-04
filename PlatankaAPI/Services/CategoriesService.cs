@@ -21,13 +21,14 @@ namespace PlatankaAPI.Services
 
         public async Task<Category> CreateCategory(string name)
         {
-            if (string.IsNullOrWhiteSpace(name)) return null;
-            var obj = new Category
+            var obj = await _categories.Find(x => x.Name.ToLower().Equals(name.ToLower())).FirstOrDefaultAsync();
+            if (string.IsNullOrWhiteSpace(name) || obj != null) return null;
+            var cat = new Category
             {
-                Name = name
+                Name = name.ToLower()
             };
-            await _categories.InsertOneAsync(obj);
-            return obj;
+            await _categories.InsertOneAsync(cat);
+            return cat;
         }
 
         public async Task<Category> GetCategory(string id)

@@ -41,8 +41,6 @@ namespace PlatankaAPI.Repositories
             return lista;
         }
 
-        // zamiast bool, add enums
-
         public async Task<bool> UpdatePost(Post newpost)
         {
             await _postsCollection.FindOneAndReplaceAsync(x => x._Id.Equals(newpost._Id),newpost);

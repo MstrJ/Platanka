@@ -26,7 +26,7 @@ namespace PlatankaAPI.Controllers
         {
             var r = await _categoriesService.CreateCategory(name);
             if (r!=null) return Ok("Category added successfully.");
-            return BadRequest("Something goes wrong");
+            return BadRequest("Category exist");
         }
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Category>>> Categories()

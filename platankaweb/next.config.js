@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "standalone",
   images: {
-    domains: ["localhost"], // Add the hostname(s) you want to allow
+    domains: ["localhost", "host.docker.internal"], // Add the hostname(s) you want to allow
 
     // remotePatterns: [
     //   {
