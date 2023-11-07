@@ -1,7 +1,7 @@
-import DashboardComponent from "@/app/components/DashboardComponent";
+import DashboardComponent from "@/components/DashboardComponent";
 import React from "react";
 
-const page = () => {
+const page = async () => {
   return <DashboardComponent></DashboardComponent>;
 };
 

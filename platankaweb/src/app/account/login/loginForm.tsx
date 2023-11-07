@@ -5,11 +5,11 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import CancelStepBtn from "./cancelStepBtn";
-import { LoginUser } from "../../types/user";
+import { LoginUser } from "../../../types/user";
 import { useRouter, useSearchParams } from "next/navigation";
-import SignIn from "../../utilities/SignIn";
-import ResponseActions from "../../components/ResponseActions";
-import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
+import SignIn from "../../../utilities/SignIn";
+import ResponseActions from "../../../components/ResponseActions";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../components/icons";
 const LoginForm = () => {
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");

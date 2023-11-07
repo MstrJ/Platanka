@@ -6,11 +6,11 @@ import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import caesarCipher from "../../utilities/caesarCipher";
-import { EyeFilledIcon, EyeSlashFilledIcon } from "../../components/icons";
-import { NewUser } from "../../types/user";
-import Post from "../../utilities/Post";
-import ResponseActions from "../../components/ResponseActions";
+import caesarCipher from "../../../utilities/caesarCipher";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../components/icons";
+import { NewUser } from "../../../types/user";
+import Post from "../../../utilities/Post";
+import ResponseActions from "../../../components/ResponseActions";
 
 const Form = () => {
   const schema = yup.object().shape({

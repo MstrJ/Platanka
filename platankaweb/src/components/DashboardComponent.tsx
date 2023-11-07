@@ -3,7 +3,7 @@ import DashboardNavbar from "./DashboardNavbar/page";
 
 const DashboardComponent = ({ children }: { children?: ReactNode }) => {
   return (
-    <div className="flex flex-row ">
+    <div className="flex flex-row basis-1 ">
       <DashboardNavbar />
       {children}
     </div>

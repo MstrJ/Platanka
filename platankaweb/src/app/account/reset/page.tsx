@@ -1,13 +1,13 @@
 "use client";
-import AccountTemplate from "@/app/components/AccountTemplate";
+import AccountTemplate from "@/components/AccountTemplate";
 import React, { useEffect, useState } from "react";
 import Form from "./form";
-import PlatankaLink from "@/app/components/PlatankaLink";
+import PlatankaLink from "@/components/PlatankaLink";
 
 const Reset = () => {
   return (
     <AccountTemplate>
-      <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background/95">
+      <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background">
         <div className="pl-8 pr-8">
           <PlatankaLink />
 

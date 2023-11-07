@@ -1,8 +1,8 @@
-import ResponseActions from "@/app/components/ResponseActions";
-import { User } from "@/app/types/user";
-import Get from "@/app/utilities/Get";
-import SendCode from "@/app/utilities/SendCode";
-import caesarCipher from "@/app/utilities/caesarCipher";
+import ResponseActions from "@/components/ResponseActions";
+import { User } from "@/types/user";
+import Get from "@/utilities/Get";
+import SendCode from "@/utilities/SendCode";
+import caesarCipher from "@/utilities/caesarCipher";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Input } from "@nextui-org/react";
 import { useRouter, useSearchParams } from "next/navigation";

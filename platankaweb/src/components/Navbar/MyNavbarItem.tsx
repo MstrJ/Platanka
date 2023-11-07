@@ -14,7 +14,7 @@ const MyNavbarItem = (props: {
     >
       <Link href={props.link}>
         <div
-          className={`${
+          className={` ${
             props.currentPage.startsWith(props.link) ? "text-primary-600" : ""
           } hover:text-primary duration-250 font-medium`}
         >

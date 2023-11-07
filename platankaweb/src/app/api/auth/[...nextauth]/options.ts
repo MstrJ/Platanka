@@ -2,11 +2,11 @@ import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { GoogleProfile } from "next-auth/providers/google";
-import { LoginUser, NewUser, User } from "@/app/types/user";
-import Get from "@/app/utilities/Get";
-import Patch from "@/app/utilities/Patch";
-import Post from "@/app/utilities/Post";
-import RandomString from "@/app/utilities/RandomString";
+import { LoginUser, NewUser, User } from "@/types/user";
+import Get from "@/utilities/Get";
+import Patch from "@/utilities/Patch";
+import Post from "@/utilities/Post";
+import RandomString from "@/utilities/RandomString";
 
 export const options: NextAuthOptions = {
   pages: {

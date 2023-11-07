@@ -29,8 +29,8 @@ export default function MyNavbar() {
     `${session ? "Wyloguj" : "Zaloguj"}`,
   ];
 
-  const menuItemsHref = ["/omnie", "/produkty", "/dashboard", "/btn"];
-
+  const menuItemsHref = ["/about_me", "/products", "/dashboard", "/btn"];
+  const menuItemsAliases = ["O mnie", "Produkty", "Dashboard"];
   const notShowPages = [
     "/account/login",
     "/account/register",
@@ -45,6 +45,7 @@ export default function MyNavbar() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
+      className="flex basis-1/12"
       classNames={{
         item: [
           "flex",
@@ -77,10 +78,14 @@ export default function MyNavbar() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <MyNavbarItem currentPage={currentPage} link="/omnie" name="O Mnie" />
         <MyNavbarItem
           currentPage={currentPage}
-          link="/produkty"
+          link="/about_me"
+          name="O Mnie"
+        />
+        <MyNavbarItem
+          currentPage={currentPage}
+          link="/products"
           name="Dostępne Produkty"
         />
         {session?.user.permission.role == "admin" && (
@@ -110,7 +115,11 @@ export default function MyNavbar() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             {menuItemsHref[index] !== "/btn" ? (
-              <Link className="w-full" href={menuItemsHref[index]}>
+              <Link
+                className="w-full"
+                href={menuItemsHref[index]}
+                as={menuItemsAliases[index]}
+              >
                 <div
                   className={`${
                     currentPage.startsWith(menuItemsHref[index])

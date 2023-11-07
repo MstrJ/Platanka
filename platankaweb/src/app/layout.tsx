@@ -1,8 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "./providers/NextUIProvider";
-import Navbar from "./components/Navbar/page";
+import Navbar from "../components/Navbar/page";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config as fontAwesomeConfig } from "@fortawesome/fontawesome-svg-core";
 import { getServerSession } from "next-auth";

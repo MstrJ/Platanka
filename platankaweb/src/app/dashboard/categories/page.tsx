@@ -1,4 +1,4 @@
-import DashboardComponent from "@/app/components/DashboardComponent";
+import DashboardComponent from "@/components/DashboardComponent";
 import React from "react";
 
 const Categories = () => {

@@ -19,6 +19,7 @@ export const PostCard = ({
     <>
       <Card shadow="md" isPressable className="break-inside-avoid">
         <CardBody className="overflow-visible p-0">
+          {/* // TODO: make imagecomponent, which can be use here and in dashboard */}
           <Image
             as={NextImage}
             shadow="sm"

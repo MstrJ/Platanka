@@ -3,11 +3,11 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import { Link } from "@nextui-org/react";
-import ProviderCard from "../../components/Cards/ProviderCard";
+import ProviderCard from "../../../components/Cards/ProviderCard";
 import LoginForm from "./loginForm";
 import { notFound, useRouter, useSearchParams } from "next/navigation";
-import AccountTemplate from "@/app/components/AccountTemplate";
-import PlatankaLink from "@/app/components/PlatankaLink";
+import AccountTemplate from "@/components/AccountTemplate";
+import PlatankaLink from "@/components/PlatankaLink";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const LoginPage = () => {
   if (session?.user) router.push(callbackUrl);
   return (
     <AccountTemplate>
-      <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background/95">
+      <div className="md:flex-none flex-1 basis-full md:w-96 h-screen bg-background">
         <div className="pl-8">
           <PlatankaLink />
 

@@ -5,15 +5,15 @@ import { Button, Link } from "@nextui-org/react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import caesarCipher from "../../utilities/caesarCipher";
-import Patch from "../../utilities/Patch";
+import caesarCipher from "../../../utilities/caesarCipher";
+import Patch from "../../../utilities/Patch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldHalved } from "@fortawesome/free-solid-svg-icons";
-import ResponseActions from "../../components/ResponseActions";
-import SuccessCard from "../../components/Cards/SuccessCard";
-import AccountTemplate from "@/app/components/AccountTemplate";
-import ChangePasswordComponent from "@/app/components/ChangePasswordComponent";
-import SendCode from "@/app/utilities/SendCode";
+import ResponseActions from "../../../components/ResponseActions";
+import SuccessCard from "../../../components/Cards/SuccessCard";
+import AccountTemplate from "@/components/AccountTemplate";
+import ChangePasswordComponent from "@/components/ChangePasswordComponent";
+import SendCode from "@/utilities/SendCode";
 const Confirmation = () => {
   const schema = yup.object().shape({
     code: yup.number().required(" ").min(1000).max(9999),
@@ -76,7 +76,7 @@ const Confirmation = () => {
 
   return (
     <AccountTemplate>
-      <div className="h-screen w-screen md:w-[640px] bg-background/95  px-16 ">
+      <div className="h-screen w-screen md:w-[640px] bg-background  px-16 ">
         <div className="font-platanka text-4xl mt-12 text-primary-400 text-center">
           PlątAnka
         </div>

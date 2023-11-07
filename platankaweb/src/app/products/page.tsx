@@ -1,4 +1,4 @@
-import ProductsComponent from "../components/ProductsComponent";
+import ProductsComponent from "../../components/ProductsComponent";
 
 const Produkty = () => {
   return (

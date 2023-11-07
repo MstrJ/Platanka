@@ -2,16 +2,16 @@
 
 import React from "react";
 import { Button, Link } from "@nextui-org/react";
-import ProviderCard from "../../components/Cards/ProviderCard";
+import ProviderCard from "../../../components/Cards/ProviderCard";
 import Form from "./form";
-import AccountTemplate from "@/app/components/AccountTemplate";
-import PlatankaLink from "@/app/components/PlatankaLink";
+import AccountTemplate from "@/components/AccountTemplate";
+import PlatankaLink from "@/components/PlatankaLink";
 
 const RegisterPage = () => {
   return (
     <AccountTemplate>
       <div className="flex-1 md:basis-1/4 basis-1/6  "></div>
-      <div className=" flex-1 md:basis-3/4 basis-5/6 h-screen bg-background/95  overflow-y-auto">
+      <div className=" flex-1 md:basis-3/4 basis-5/6 h-screen bg-background  overflow-y-auto">
         <div className="pl-14 md:w-96">
           <PlatankaLink />
 
