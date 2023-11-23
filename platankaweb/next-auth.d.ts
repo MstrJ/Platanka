@@ -10,6 +10,7 @@ declare module "next-auth" {
       last_name: string;
       permission: Permission;
       email: string;
+      token: string;
     } & DefaultSession;
   }
   interface Permission {

@@ -17,7 +17,7 @@ const useFetch = <T>(props: { urlEnd: string }) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_DEFAULTAPI_URL}/api/${props.urlEnd}`,
         {
-          // cache: "no-store",
+          cache: "no-store",
           next: {
             revalidate: 3600,
           },

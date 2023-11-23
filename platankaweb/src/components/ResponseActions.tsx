@@ -7,7 +7,7 @@ const ResponseActions = ({
   status,
   loading,
 }: {
-  error: string;
+  error?: string;
   status?: string;
   loading: boolean;
 }) => {

@@ -15,6 +15,9 @@ module.exports = {
       backgroundImage: {
         flowers: "url('/public/images/flowers2.png')",
       },
+      height: {
+        true: "calc(100vh - 64px)",
+      },
     },
     fontFamily: {
       platanka: ["Lobster ", "cursive"],
@@ -30,7 +33,7 @@ module.exports = {
     nextui({
       themes: {
         dark: {
-          extend: "dark", // <- inherit default values from dark theme
+          extend: "dark",
           colors: {
             background: "#0D001A",
             foreground: "#ffffff",

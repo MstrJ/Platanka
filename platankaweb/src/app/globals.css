@@ -27,3 +27,10 @@
     margin: 0;
   }
 }
+
+.imgPreview {
+  @apply w-[320px] h-[320px];
+}
+.sidebar {
+  @apply flex h-true flex-col gap-y-14 w-48 pl-10;
+}

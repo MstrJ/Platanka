@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Get from "../utilities/Get";
-import { Category } from "../types/post";
+import Get from "../../utilities/Get";
+import { Category } from "../../types/post";
 import {
   Checkbox,
   CheckboxGroup,

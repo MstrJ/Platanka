@@ -1,16 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import PostType from "../types/post";
-import useFetch from "../hooks/useFetch";
-import LoadingComponent from "./LoadingComponent";
-import { Button, divider } from "@nextui-org/react";
+import PostType from "../../types/post";
+import useFetch from "../../hooks/useFetch";
+import LoadingComponent from "../Loading/LoadingComponent";
+import { Button } from "@nextui-org/react";
 import PostsComponent from "./PostsComponent";
 import { getSession, useSession } from "next-auth/react";
-import CategoriesComponents from "./CategoriesComponents";
+import CategoriesComponents from "../Categories/CategoriesComponents";
 import { getServerSession } from "next-auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { revalidatePath, revalidateTag } from "next/cache";
 import ProductsActions from "./ProductsActions";
+import { FetchType } from "@/types/fetch";
 
 const ProductsComponent = () => {
   const { data: session } = useSession();
@@ -25,13 +26,7 @@ const ProductsComponent = () => {
     getData,
     error,
     status,
-  }: {
-    loading: boolean;
-    data: PostType[] | null;
-    getData: any;
-    error: string;
-    status: string;
-  } = useFetch<PostType[]>({
+  }: FetchType<PostType[]> = useFetch<PostType[]>({
     urlEnd: link,
   });
 
@@ -75,7 +70,7 @@ const ProductsComponent = () => {
   }, [selected, selectedRadio]);
 
   return (
-    <div className="md:px-10 px-6 mt-12">
+    <div className="lg:mx-0 md:mx-10 mx-6 my-0 h-true">
       <div className="flex flex-row gap-12 justify-left">
         <CategoriesComponents
           loading={loading}
@@ -94,10 +89,10 @@ const ProductsComponent = () => {
       ) : error || loading ? (
         <LoadingComponent error={error} loading={loading} status={status}>
           <Button
-            variant="solid"
+            variant="ghost"
             color="primary"
             className={`${loading ? "hidden" : ""}`}
-            onClick={() => getData()}
+            onClick={async () => await getData()}
             isDisabled={loading}
           >
             Odśwież Dane

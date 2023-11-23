@@ -1,8 +1,8 @@
-import DashboardComponent from "@/components/DashboardComponent";
+import DashboardWrapper from "@/components/Dashboard/DashboardWrapper";
 import React from "react";
 
 const page = async () => {
-  return <DashboardComponent></DashboardComponent>;
+  return <DashboardWrapper></DashboardWrapper>;
 };
 
 export default page;

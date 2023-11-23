@@ -6,7 +6,6 @@ import { LoginUser, NewUser, User } from "@/types/user";
 import Get from "@/utilities/Get";
 import Patch from "@/utilities/Patch";
 import Post from "@/utilities/Post";
-import RandomString from "@/utilities/RandomString";
 
 export const options: NextAuthOptions = {
   pages: {
@@ -42,8 +41,8 @@ export const options: NextAuthOptions = {
             email: profile.email,
             first_Name: username[0],
             last_Name: username[1] ?? " ",
-            password: "12356",
-            confirmPassword: "12356",
+            password: "",
+            confirmPassword: "",
             providers: ["GOOGLE"],
           };
 
@@ -97,14 +96,14 @@ export const options: NextAuthOptions = {
 
         if (!error && acc) {
           return {
+            id: acc?._Id,
+            email: acc?.email,
             first_name: acc?.first_Name,
             last_name: acc?.last_Name,
             permission: {
               role: acc?.permission.role,
               level: acc?.permission.level,
             },
-            email: acc?.email,
-            id: acc?._Id,
           };
         }
       },
@@ -114,22 +113,6 @@ export const options: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    session: ({ session, token }) => {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          permission: {
-            role: token.permission.role.toLowerCase(),
-            level: token.permission.level,
-          },
-          email: token.email,
-          first_name: token.first_name,
-          last_name: token.last_name,
-        },
-      };
-    },
     async jwt({ token, user }) {
       if (user) {
         const u = user as unknown as any;
@@ -146,6 +129,11 @@ export const options: NextAuthOptions = {
         };
       }
       return token;
+    },
+    session: ({ session, token }): any => {
+      session.user = token as any;
+      // session.expires = "xD";
+      return session;
     },
     async signIn({ user, account, profile }): Promise<any> {
       // if (account?.provider === "google") {

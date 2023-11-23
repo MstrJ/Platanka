@@ -1,6 +1,6 @@
 import React from "react";
-import PostType from "../types/post";
-import { PostCard } from "./Cards/PostCard";
+import PostType from "../../types/post";
+import { PostCard } from "../Cards/PostCard";
 
 const PostsComponent = ({
   posts,

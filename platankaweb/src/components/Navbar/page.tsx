@@ -45,7 +45,7 @@ export default function MyNavbar() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="flex basis-1/12"
+      className="flex"
       classNames={{
         item: [
           "flex",

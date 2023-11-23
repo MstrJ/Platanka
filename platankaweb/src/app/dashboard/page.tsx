@@ -1,8 +1,8 @@
 import React from "react";
-import DashboardComponent from "../../components/DashboardComponent";
+import DashboardWrapper from "../../components/Dashboard/DashboardWrapper";
 
 const Dashboard = () => {
-  return <DashboardComponent></DashboardComponent>;
+  return <DashboardWrapper></DashboardWrapper>;
 };
 
 export default Dashboard;

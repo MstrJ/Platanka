@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-// import accountBackground from "public/images/underthewater.jpg";
 import accountBackground from "public/images/flowers2.png";
 
 const AccountTemplate = ({ children }: { children: ReactNode }) => {

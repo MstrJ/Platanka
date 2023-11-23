@@ -21,6 +21,6 @@ export const getImages = async () => {
 
     return json;
   } catch (e: any) {
-    return null;
+    return e;
   }
 };

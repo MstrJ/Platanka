@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import ResponseActions from "./ResponseActions";
+import ResponseActions from "../ResponseActions";
 
 const LoadingComponent = ({
   error,
@@ -7,13 +7,13 @@ const LoadingComponent = ({
   status,
   children,
 }: {
-  error: string;
+  error?: string;
   loading: boolean;
   status?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }) => {
   return (
-    <div className="flex flex-col gap-2 w-screen h-screen  pb-72 justify-center items-center ">
+    <div className="flex flex-col gap-2 w-screen h-true  pb-72 justify-center items-center ">
       <ResponseActions error={error} loading={loading} status={status} />
       {children}
     </div>
